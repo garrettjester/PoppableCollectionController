@@ -97,16 +97,17 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0, options: [], animations: { () -> Void in
                 
-            screenshotFromView.alpha = 0.0
-            screenshotToView.frame = UIScreen.main.bounds
-            screenshotToView.frame.origin = CGPoint(x: 0.0, y: 0.0)
-            screenshotFromView.frame = screenshotToView.frame
-            
+                screenshotFromView.alpha = 0.0
+                screenshotToView.frame = UIScreen.main.bounds
+                screenshotToView.frame.origin = CGPoint(x: 0.0, y: 0.0)
+                screenshotFromView.frame = screenshotToView.frame
+                
             }) { _ in
-                screenshotToView.removeFromSuperview()
-                screenshotFromView.removeFromSuperview()
-                toView.isHidden = false
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            print("DID FINISH TRANSITION")
+            screenshotToView.removeFromSuperview()
+            screenshotFromView.removeFromSuperview()
+            toView.isHidden = false
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
     
@@ -162,16 +163,16 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0, options: [], animations: { () -> Void in
-            screenshotToView.alpha = 1.0
-            screenshotFromView.frame = currentCell.frame
-            screenshotFromView.frame.origin = containerOrigin
-            screenshotToView.frame = screenshotFromView.frame
-            
+                screenshotToView.alpha = 1.0
+                screenshotFromView.frame = currentCell.frame
+                screenshotFromView.frame.origin = containerOrigin
+                screenshotToView.frame = screenshotFromView.frame
+                
             }) { _ in
-                currentCell.isHidden = false
-                screenshotFromView.removeFromSuperview()
-                screenshotToView.removeFromSuperview()
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            currentCell.isHidden = false
+            screenshotFromView.removeFromSuperview()
+            screenshotToView.removeFromSuperview()
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }
