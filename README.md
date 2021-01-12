@@ -1,4 +1,4 @@
-# PoppableCollectionController
+# PoppableCollectionController 🍾
 
 ## About
 A CollectionController protocol used to create a custom "pop" animation from a UICollectionCell to a fullscreen ViewController and vice versa. 
