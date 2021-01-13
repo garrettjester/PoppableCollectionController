@@ -96,9 +96,8 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0, options: [], animations: { () -> Void in
-                
                 screenshotFromView.alpha = 0.0
-                screenshotToView.frame = UIScreen.main.bounds
+                screenshotToView.frame = toView.frame
                 screenshotToView.frame.origin = CGPoint(x: 0.0, y: 0.0)
                 screenshotFromView.frame = screenshotToView.frame
                 
@@ -106,6 +105,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             print("DID FINISH TRANSITION")
             screenshotToView.removeFromSuperview()
             screenshotFromView.removeFromSuperview()
+            toView.alpha = 0.0
             toView.isHidden = false
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
