@@ -6,7 +6,7 @@ A CollectionController protocol used to create a custom "pop" animation from a U
 The "pop" effect is created by the PopAnimator (a subclass of UIViewControllerAnimatedTransitioning). This custom transition is called on UINavigationController's `popViewController()` and `pushViewController()` methods, so your controllers MUST be managed by UINavigationController for the animation to work.
 
 ## Installation
-**Swift Package Manager**
+**Swift Package Manager**  
 Add the following to `Package.swift`:
 ```
 dependencies: [
