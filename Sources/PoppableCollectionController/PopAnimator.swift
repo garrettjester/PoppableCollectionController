@@ -97,7 +97,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0, options: [], animations: { () -> Void in
                 screenshotFromView.alpha = 0.0
-                screenshotToView.frame = toView.frame
+                screenshotToView.frame = UIScreen.main.applicationFrame
                 screenshotToView.frame.origin = CGPoint(x: 0.0, y: 0.0)
                 screenshotFromView.frame = screenshotToView.frame
                 
