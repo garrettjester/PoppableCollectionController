@@ -73,6 +73,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let screenshotToView = UIImageView(image: toView.screenshot)
         screenshotToView.frame = currentCell.frame
+        screenshotToView.contentMode = .scaleAspectFill
         
         let containerOrigin = fromView.convert(screenshotToView.frame.origin, to: container)
         screenshotToView.frame.origin = containerOrigin
