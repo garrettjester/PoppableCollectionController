@@ -58,6 +58,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         guard let fromVC = transitionContext.viewController(
                 forKey: .from) as? PoppableCollectionController,
+              let toVC = transitionContext.viewController(forKey: .to),
               let fromView = fromVC.collectionView,
               let currentCell = fromVC.sourceCell else {
             
@@ -66,6 +67,13 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.containerView.addSubview(toView)
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             return
+        }
+        
+        var topInset: CGFloat = 0.0
+        
+        
+        if let toNavigationController = toVC.navigationController, !toNavigationController.isNavigationBarHidden {
+            topInset = toNavigationController.navigationBar.frame.height
         }
         
         let container = transitionContext.containerView
@@ -102,12 +110,13 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 if #available(iOS 11, *) {
                     screenshotToView.frame = toView.safeAreaLayoutGuide.layoutFrame
                 }
-                //screenshotToView.frame.origin = CGPoint(x: 0.0, y: 0.0)
+                screenshotToView.frame.origin = CGPoint(x: 0.0, y: topInset)
                 screenshotFromView.frame = screenshotToView.frame
                 
             }) { _ in
             print("DID FINISH TRANSITION")
             //screenshotToView.removeFromSuperview()
+            screenshotToView.alpha = 0.6
             screenshotFromView.removeFromSuperview()
             screenshotToView.backgroundColor = .black
             toView.alpha = 1.0
