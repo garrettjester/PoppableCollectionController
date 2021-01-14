@@ -107,8 +107,9 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 
             }) { _ in
             print("DID FINISH TRANSITION")
-            screenshotToView.removeFromSuperview()
+            //screenshotToView.removeFromSuperview()
             screenshotFromView.removeFromSuperview()
+            screenshotToView.backgroundColor = .black
             toView.alpha = 1.0
             toView.isHidden = false
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
