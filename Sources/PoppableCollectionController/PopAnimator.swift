@@ -18,6 +18,8 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private let _operationType: UINavigationController.Operation
     private let _transitionDuration: TimeInterval
     
+
+    
     public init(operation: UINavigationController.Operation) {
         _operationType = operation
         _transitionDuration = 0.4
@@ -88,7 +90,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         screenshotToView.frame.origin = containerOrigin
         
         var endFrame = toView.convert(toView.frame, to: container)
-        endFrame.origin.y -= topInset
+        endFrame.origin.y -= (topInset + toVC.statusBarHeight)
 
         // If a source image is specified, use it for the transition,
         // otherwise create a screenshot of the cell's content.
