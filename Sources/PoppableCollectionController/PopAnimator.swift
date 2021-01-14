@@ -83,6 +83,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         screenshotToView.frame = currentCell.frame
         screenshotToView.contentMode = .scaleAspectFill
         
+        let endFrame = toView.convert(toView.frame, to: container)
         //let containerOrigin = fromView.convert(screenshotToView.frame.origin, to: container)
         //screenshotToView.frame.origin = containerOrigin
 
@@ -105,12 +106,8 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: _transitionDuration, delay: 0, usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0, options: [], animations: { () -> Void in
-                print("TO VIEW FRAME \(toView.frame)")
                 screenshotFromView.alpha = 0.0
-                if #available(iOS 11, *) {
-                    screenshotToView.frame = toView.safeAreaLayoutGuide.layoutFrame
-                }
-                screenshotToView.frame.origin = CGPoint(x: 0.0, y: topInset)
+                screenshotToView.frame = endFrame
                 screenshotFromView.frame = screenshotToView.frame
             }) { _ in
             screenshotToView.removeFromSuperview()
