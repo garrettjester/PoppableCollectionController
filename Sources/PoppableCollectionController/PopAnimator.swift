@@ -90,7 +90,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         screenshotToView.frame.origin = containerOrigin
         
         var endFrame = toView.convert(toView.frame, to: container)
-        endFrame.origin.y = 0
+        endFrame.origin.y = topInset
 
         // If a source image is specified, use it for the transition,
         // otherwise create a screenshot of the cell's content.
