@@ -90,7 +90,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         screenshotToView.frame.origin = containerOrigin
         
         var endFrame = toView.convert(toView.frame, to: container)
-        endFrame.origin.y = topInset + 20
+        endFrame.origin.y = topInset + 30
         
         print("TOP INSET \(topInset)")
         print("END FRAME \(endFrame)")
