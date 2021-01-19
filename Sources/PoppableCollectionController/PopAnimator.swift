@@ -89,7 +89,8 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let containerOrigin = fromView.convert(screenshotToView.frame.origin, to: container)
         screenshotToView.frame.origin = containerOrigin
         
-        let endFrame = toView.convert(toView.frame, to: container)
+        var endFrame = toView.convert(toView.frame, to: container)
+        endFrame.origin.y = 0
         
         print("END FRAME \(endFrame)")
         
