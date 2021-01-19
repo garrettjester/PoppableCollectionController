@@ -179,7 +179,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             }) { _ in
             currentCell.isHidden = false
             screenshotFromView.removeFromSuperview()
-            //screenshotToView.removeFromSuperview()
+            screenshotToView.removeFromSuperview()
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
