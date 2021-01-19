@@ -71,8 +71,6 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-    
-        
         let container = transitionContext.containerView
         container.addSubview(toView)
         
@@ -84,13 +82,10 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let containerOrigin = fromView.convert(screenshotToView.frame.origin, to: container)
         screenshotToView.frame.origin = containerOrigin
         
+        // Adjust the end frame to appropriate coordinate space, adjusting for any
+        // necessary top insets.
         var endFrame = toView.convert(toView.frame, to: container)
-        endFrame.origin.y = toVC.topbarHeight
-        
-        print("TOP BAR HEIGHT \(toVC.topbarHeight)")
-        
-        print("END FRAME \(endFrame)")
-        
+        endFrame.origin.y = toVC.topBarHeight
 
         // If a source image is specified, use it for the transition,
         // otherwise create a screenshot of the cell's content.
@@ -153,7 +148,6 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         }
         
         let container = transitionContext.containerView
-        
         container.addSubview(toView)
         
         let screenshotFromView = UIImageView(image: fromView.screenshot)
@@ -161,9 +155,9 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let screenshotToView = UIImageView(image: toViewController.sourceImage ?? currentCell.screenshot)
         screenshotToView.frame = screenshotFromView.frame
+        screenshotToView.contentMode = .scaleToFill
         
         container.addSubview(screenshotToView)
-        
         container.insertSubview(screenshotFromView, belowSubview: screenshotToView)
         
         screenshotToView.alpha = 0.0

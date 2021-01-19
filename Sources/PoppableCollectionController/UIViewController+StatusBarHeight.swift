@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIViewController {
     
-    var topbarHeight: CGFloat {
+    var topBarHeight: CGFloat {
         if #available(iOS 13, *) {
            return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
                (self.navigationController?.navigationBar.frame.height ?? 0.0)
