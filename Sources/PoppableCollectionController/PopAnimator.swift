@@ -75,7 +75,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         
         if let toNavigationController = toVC.navigationController, !toNavigationController.isNavigationBarHidden {
-            topInset = toNavigationController.navigationBar.frame.height
+            topInset = toNavigationController.navigationBar.frame.height + toVC.statusBarHeight
             print("NAV BAR TOP INSET \(topInset)")
         }
         
@@ -94,7 +94,6 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         endFrame.origin.y = topInset
         
         print("END FRAME \(endFrame)")
-        
         
 
         // If a source image is specified, use it for the transition,
