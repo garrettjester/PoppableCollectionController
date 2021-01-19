@@ -160,13 +160,12 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         container.addSubview(screenshotToView)
         container.insertSubview(screenshotFromView, belowSubview: screenshotToView)
         
-        //screenshotToView.alpha = 0.0
+        screenshotToView.alpha = 0.0
         fromView.isHidden = true
         currentCell.isHidden = true
         
         let containerOrigin = toCollectionView.convert(currentCell.frame.origin, to: container)
-        
-        print("CURRENT CELL")
+
         
         // 2. ANIMATE
         UIView.animate(
