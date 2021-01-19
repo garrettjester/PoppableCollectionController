@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UIView+Screenshot.swift
 //  
 //
 //  Created by Garrett Jester on 1/12/21.

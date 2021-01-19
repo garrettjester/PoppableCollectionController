@@ -1,5 +1,5 @@
 //
-//  UIViewController+StatusBarHeight.swift
+//  UIViewController+TopBarHeight.swift
 //  PoppableCollectionController
 //
 //  Created by Garrett Jester on 1/14/21.
