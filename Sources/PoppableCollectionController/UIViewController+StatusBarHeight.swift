@@ -9,19 +9,14 @@ import UIKit
 
 public extension UIViewController {
     
-    public var statusBarHeight: CGFloat {
-        var statusBarHeight: CGFloat = 0.0
-        if #available(iOS 11.0, *) {
-            statusBarHeight = self.view.safeAreaInsets.top
-            let hardwareInset = self.view.safeAreaInsets.bottom > CGFloat.ulpOfOne && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
-            if statusBarHidden && !hardwareInset {
-                statusBarHeight = 0.0
-            }
+    var topbarHeight: CGFloat {
+        if #available(iOS 13, *) {
+           return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+               (self.navigationController?.navigationBar.frame.height ?? 0.0)
         } else {
-            if statusBarHidden { statusBarHeight = 0.0 }
-            else { statusBarHeight = self.topLayoutGuide.length }
+            return UIApplication.shared.statusBarFrame.size.height +
+                (self.navigationController?.navigationBar.frame.height ?? 0.0)
         }
-        return statusBarHeight
     }
     
     
