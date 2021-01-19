@@ -74,9 +74,10 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         var topInset: CGFloat = 0.0
         
         
-        /*if let toNavigationController = toVC.navigationController, !toNavigationController.isNavigationBarHidden {
+        if let toNavigationController = toVC.navigationController, !toNavigationController.isNavigationBarHidden {
             topInset = toNavigationController.navigationBar.frame.height
-        }*/
+            print("NAV BAR TOP INSET \(topInset)")
+        }
         
         let container = transitionContext.containerView
         container.addSubview(toView)
@@ -90,7 +91,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         screenshotToView.frame.origin = containerOrigin
         
         var endFrame = toView.convert(toView.frame, to: container)
-        endFrame.origin.y = 0
+        endFrame.origin.y = topInset
         
         print("END FRAME \(endFrame)")
         
