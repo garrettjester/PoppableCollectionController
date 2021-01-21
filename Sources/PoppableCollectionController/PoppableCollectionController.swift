@@ -17,6 +17,9 @@ public protocol PoppableCollectionController {
     // The collectionView containing the cell.
     var collectionView: UICollectionView? {get}
     
+    
+    var selectionPreviewFrame: CGRect? {get}
+    
     // The controller's view.
     var view: UIView! {get}
 }

@@ -15,18 +15,18 @@ import UIKit
 
 public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    private let _operationType: UINavigationController.Operation
+    private let _operationStyle: MediaPickerAnimationStyle
     private let _transitionDuration: TimeInterval
     
 
     
-    public init(operation: UINavigationController.Operation) {
-        _operationType = operation
+    public init(operation: MediaPickerAnimationStyle) {
+        _operationStyle = operation
         _transitionDuration = 0.4
     }
     
-    public init(operation: UINavigationController.Operation, andDuration duration: TimeInterval) {
-        _operationType = operation
+    public init(operation: MediaPickerAnimationStyle, andDuration duration: TimeInterval) {
+        _operationStyle = operation
         _transitionDuration = duration
     }
     
@@ -36,10 +36,12 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if _operationType == .push {
+        if _operationStyle == .pushed {
             performPushTransition(transitionContext)
-        } else if _operationType == .pop {
-            performPopTransition(transitionContext)
+        } else if _operationStyle == .popCancelled {
+            performPopTransition(transitionContext, selected: false)
+        } else {
+            performPopTransition(transitionContext, selected: true)
         }
     }
     
@@ -125,7 +127,7 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     ///------------------------------------
     /// Accesses and configures the necessary view components,
     /// then animates the controller back to the cell.
-    private func performPopTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+    private func performPopTransition(_ transitionContext: UIViewControllerContextTransitioning, selected: Bool = false) {
         
         // 1. SETUP
         guard let toView = transitionContext.view(forKey: .to) else {
@@ -182,4 +184,10 @@ public class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+}
+
+public enum MediaPickerAnimationStyle {
+    case popCancelled
+    case popSelected
+    case pushed
 }
